@@ -11,6 +11,28 @@
   /* Año del copyright */
   $$("[data-year]").forEach((e) => (e.textContent = new Date().getFullYear()));
 
+  /* ---------- Pantalla de carga (Preloader) ---------- */
+  const preloader = $("#preloader");
+  if (preloader) {
+    let closed = false;
+    const hidePreloader = () => {
+      if (closed) return;
+      closed = true;
+      setTimeout(() => {
+        preloader.classList.add("loaded");
+        setTimeout(() => {
+          if (preloader.parentNode) preloader.remove();
+        }, 850);
+      }, 700);
+    };
+    if (document.readyState === "complete") {
+      hidePreloader();
+    } else {
+      window.addEventListener("load", hidePreloader);
+      setTimeout(hidePreloader, 2800);
+    }
+  }
+
   /* Imágenes que faltan: se ocultan y queda el degradado de fondo */
   document.addEventListener("error", (e) => {
     if (e.target && e.target.tagName === "IMG") e.target.classList.add("img-missing");
