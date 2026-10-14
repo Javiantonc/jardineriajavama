@@ -161,6 +161,20 @@
     });
   };
 
+  /* ---------- Foto Sobre mí: reducción de escala con el scroll ---------- */
+  const aboutPhoto = $(".about-photo");
+  const updateAboutScale = () => {
+    if (!aboutPhoto || reduce) return;
+    const vh = innerHeight;
+    const r = aboutPhoto.getBoundingClientRect();
+    if (r.bottom < -100 || r.top > vh + 100) return;
+
+    const maxScroll = Math.max(500, vh * 0.85);
+    const progress = clamp(window.scrollY / maxScroll);
+    const scale = (1.0 - progress * 0.30).toFixed(3);
+    aboutPhoto.style.setProperty("--photo-scale", scale);
+  };
+
   /* ---------- HERO: progreso de scroll con inercia ---------- */
   const measure = () => {
     if (!hero) return;
@@ -190,7 +204,7 @@
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
-      setNav(); updateScrubs(); updateParallax();
+      setNav(); updateScrubs(); updateParallax(); updateAboutScale();
       if (hero && hero.classList.contains("live")) { measure(); kick(); }
       ticking = false;
     });
