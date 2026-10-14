@@ -265,17 +265,50 @@
     let last = null;
     const open = (card) => {
       last = card;
-      f.ico.innerHTML = $(".ico", card).innerHTML;
-      f.title.textContent = $("h3", card).textContent;
-      f.price.textContent = $(".price", card).textContent;
-      f.desc.textContent = $("p", card).textContent;
-      f.list.innerHTML = $(".data", card).innerHTML;
-      f.cta.href = "contacto.html?servicio=" + encodeURIComponent(card.dataset.contact || "") + "#formulario";
-      sheet.classList.add("open"); document.body.style.overflow = "hidden";
-      $(".sheet-close", sheet).focus();
+      const icoEl = $(".ico", card);
+      const titleEl = $("h3", card);
+      const priceEl = $(".price", card);
+      const descEl = $("p", card);
+      const dataEl = $(".data", card);
+
+      if (f.ico && icoEl) f.ico.innerHTML = icoEl.innerHTML;
+      if (f.title && titleEl) f.title.textContent = titleEl.textContent;
+      if (f.price) {
+        if (priceEl && priceEl.textContent.trim()) {
+          f.price.textContent = priceEl.textContent;
+          f.price.style.display = "";
+        } else {
+          f.price.textContent = "";
+          f.price.style.display = "none";
+        }
+      }
+      if (f.desc) {
+        f.desc.textContent = card.dataset.desc || (descEl ? descEl.textContent : "");
+      }
+      if (f.list) {
+        f.list.innerHTML = dataEl ? dataEl.innerHTML : "";
+      }
+      if (f.cta) {
+        f.cta.href = "contacto.html?servicio=" + encodeURIComponent(card.dataset.contact || "") + "#formulario";
+      }
+      sheet.classList.add("open");
+      document.body.style.overflow = "hidden";
+      const closeBtn = $(".sheet-close", sheet);
+      if (closeBtn) closeBtn.focus();
     };
     const close = () => { sheet.classList.remove("open"); document.body.style.overflow = ""; last && last.focus(); };
-    $$(".price-card").forEach((c) => c.addEventListener("click", () => open(c)));
+    $$(".price-card, #servicios .tile").forEach((c) => {
+      c.addEventListener("click", () => open(c));
+      c.setAttribute("role", "button");
+      c.setAttribute("tabindex", "0");
+      c.setAttribute("aria-haspopup", "dialog");
+      c.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          open(c);
+        }
+      });
+    });
     $(".sheet-close", sheet).addEventListener("click", close);
     sheet.addEventListener("click", (e) => e.target === sheet && close());
     addEventListener("keydown", (e) => e.key === "Escape" && sheet.classList.contains("open") && close());
