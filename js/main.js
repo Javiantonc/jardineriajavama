@@ -11,51 +11,69 @@
   /* Año del copyright */
   $$("[data-year]").forEach((e) => (e.textContent = new Date().getFullYear()));
 
-  /* ---------- Pantalla de carga (Preloader con Bonsái y anillo de carga) ---------- */
+  /* ---------- Pantalla de carga (Preloader con Bonsái y transición de árboles) ---------- */
   const preloader = $("#preloader");
   if (preloader) {
-    const ringFill = $(".ring-fill", preloader);
-    const pctEl = $("#preloader-pct", preloader);
-    const statusEl = $(".preloader-status", preloader);
-    let closed = false;
-
-    const finish = () => {
-      if (closed) return;
-      closed = true;
-      if (pctEl) pctEl.textContent = "100";
-      if (ringFill) ringFill.style.setProperty("--p", "1");
-      if (statusEl) statusEl.textContent = "¡Bienvenido!";
-      preloader.classList.add("charged");
-      setTimeout(() => {
-        preloader.classList.add("loaded");
-        setTimeout(() => {
-          if (preloader.parentNode) preloader.remove();
-        }, 850);
-      }, 380);
-    };
-
-    if (reduce) {
-      finish();
+    if (sessionStorage.getItem("javama_entered")) {
+      preloader.remove();
     } else {
-      const dur = 1650;
-      const t0 = performance.now();
-      const step = (t) => {
+      const ringFill = $(".ring-fill", preloader);
+      const pctEl = $("#preloader-pct", preloader);
+      const statusEl = $(".preloader-status", preloader);
+      const slides = $$(".tree-slide", preloader);
+      let closed = false;
+
+      const finish = () => {
         if (closed) return;
-        const elapsed = t - t0;
-        const k = clamp(elapsed / dur);
-        const eased = 1 - Math.pow(1 - k, 3);
-        if (ringFill) ringFill.style.setProperty("--p", eased.toFixed(4));
-        if (pctEl) pctEl.textContent = Math.round(eased * 100);
-
-        if (k < 1) {
-          requestAnimationFrame(step);
-        } else {
-          finish();
-        }
+        closed = true;
+        try {
+          sessionStorage.setItem("javama_entered", "1");
+        } catch (_) {}
+        if (pctEl) pctEl.textContent = "100";
+        if (ringFill) ringFill.style.setProperty("--p", "1");
+        if (statusEl) statusEl.textContent = "¡Bienvenido!";
+        preloader.classList.add("charged");
+        setTimeout(() => {
+          preloader.classList.add("loaded");
+          setTimeout(() => {
+            if (preloader.parentNode) preloader.remove();
+          }, 850);
+        }, 420);
       };
-      requestAnimationFrame(step);
 
-      preloader.addEventListener("click", finish);
+      if (reduce) {
+        finish();
+      } else {
+        const dur = 3600; /* Carga pausada para disfrutar del cambio de árboles */
+        const t0 = performance.now();
+        let lastSlideIdx = 0;
+
+        const step = (t) => {
+          if (closed) return;
+          const elapsed = t - t0;
+          const k = clamp(elapsed / dur);
+          const eased = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+          if (ringFill) ringFill.style.setProperty("--p", eased.toFixed(4));
+          if (pctEl) pctEl.textContent = Math.round(eased * 100);
+
+          if (slides.length > 0) {
+            const slideIdx = Math.min(slides.length - 1, Math.floor(k * slides.length));
+            if (slideIdx !== lastSlideIdx) {
+              slides.forEach((s, idx) => s.classList.toggle("active", idx === slideIdx));
+              lastSlideIdx = slideIdx;
+            }
+          }
+
+          if (k < 1) {
+            requestAnimationFrame(step);
+          } else {
+            finish();
+          }
+        };
+        requestAnimationFrame(step);
+
+        preloader.addEventListener("click", finish);
+      }
     }
   }
 

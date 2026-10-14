@@ -22,16 +22,17 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<!-- Pantalla de carga (Preloader) con círculo, bonsái central y bonsáis flotantes de fondo -->
+<!-- Pantalla de carga (Preloader) con círculo, bonsái central y transición de árboles de fondo -->
 <div id="preloader" class="preloader" role="status" aria-live="polite">
-  <!-- Bonsáis flotantes en el fondo -->
-  <div class="preloader-bg-bonsais" aria-hidden="true">
-    <img class="bg-bonsai b1" src="img/logo-tight.png" alt="">
-    <img class="bg-bonsai b2" src="img/logo-tight.png" alt="">
-    <img class="bg-bonsai b3" src="img/logo-tight.png" alt="">
-    <img class="bg-bonsai b4" src="img/logo-tight.png" alt="">
-    <img class="bg-bonsai b5" src="img/logo-tight.png" alt="">
-    <img class="bg-bonsai b6" src="img/logo-tight.png" alt="">
+  <!-- Galería de árboles cambiando en el fondo -->
+  <div class="preloader-bg-trees" aria-hidden="true">
+    <div class="tree-slide active" style="background-image: url('img/tree-1.jpg')"></div>
+    <div class="tree-slide" style="background-image: url('img/tree-6.jpg')"></div>
+    <div class="tree-slide" style="background-image: url('img/tree-3.jpg')"></div>
+    <div class="tree-slide" style="background-image: url('img/tree-4.jpg')"></div>
+    <div class="tree-slide" style="background-image: url('img/tree-2.jpg')"></div>
+    <div class="tree-slide" style="background-image: url('img/tree-5.jpg')"></div>
+    <div class="tree-overlay"></div>
   </div>
 
   <div class="preloader-content">
