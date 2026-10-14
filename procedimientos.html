@@ -22,6 +22,47 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<!-- Pantalla de carga (Preloader) con círculo, bonsái central y bonsáis flotantes de fondo -->
+<div id="preloader" class="preloader" role="status" aria-live="polite">
+  <!-- Bonsáis flotantes en el fondo -->
+  <div class="preloader-bg-bonsais" aria-hidden="true">
+    <img class="bg-bonsai b1" src="img/logo-tight.png" alt="">
+    <img class="bg-bonsai b2" src="img/logo-tight.png" alt="">
+    <img class="bg-bonsai b3" src="img/logo-tight.png" alt="">
+    <img class="bg-bonsai b4" src="img/logo-tight.png" alt="">
+    <img class="bg-bonsai b5" src="img/logo-tight.png" alt="">
+    <img class="bg-bonsai b6" src="img/logo-tight.png" alt="">
+  </div>
+
+  <div class="preloader-content">
+    <!-- Círculo central con anillo de carga y bonsái -->
+    <div class="preloader-circle-wrap">
+      <svg class="preloader-ring" viewBox="0 0 160 160" aria-hidden="true">
+        <defs>
+          <linearGradient id="preloaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8fae6b" />
+            <stop offset="50%" stop-color="#a8d5ba" />
+            <stop offset="100%" stop-color="#d4e8a8" />
+          </linearGradient>
+        </defs>
+        <circle class="ring-track" cx="80" cy="80" r="72" />
+        <circle class="ring-fill" cx="80" cy="80" r="72" />
+      </svg>
+      <div class="preloader-circle">
+        <div class="preloader-circle-glow"></div>
+        <img class="preloader-bonsai-img" src="img/logo-tight.png" alt="JAVAMA Jardinería" width="96" height="108">
+      </div>
+    </div>
+
+    <!-- Indicador de carga y porcentaje -->
+    <div class="preloader-info">
+      <div class="preloader-percent"><span id="preloader-pct">0</span>%</div>
+      <span class="preloader-status">Cargando experiencia...</span>
+      <span class="preloader-hint">Toca en cualquier lugar para entrar</span>
+    </div>
+  </div>
+</div>
+
 <header class="nav" role="banner">
   <div class="nav-in">
     <a href="index.html" class="brand" aria-label="JAVAMA — Inicio"><img src="img/logo.png" alt="" width="30" height="30">JAVAMA</a>
@@ -70,13 +111,44 @@
   </div>
 </section>
 
-<section class="section section-alt">
+<section id="metodologia" class="section section-alt">
   <div class="container">
-    <div class="center" data-reveal>
+    <div class="center" data-reveal="diag-right-down">
       <span class="eyebrow">Metodología</span>
       <h2 class="h-lg">Nuestra metodología <span class="grad">de trabajo.</span></h2>
     </div>
-    <div class="cards" data-stagger><div class="card"><div class="ico"><i class="fa-solid fa-leaf"></i></div><h3>Enfoque ecológico</h3><p>Utilizamos técnicas sostenibles y productos respetuosos con el medio ambiente. Priorizamos especies autóctonas y sistemas de riego eficientes.</p></div><div class="card"><div class="ico"><i class="fa-solid fa-clipboard-check"></i></div><h3>Planificación detallada</h3><p>Cada proyecto comienza con un análisis exhaustivo y un plan de trabajo claro, asegurando que cada detalle sea considerado desde el inicio.</p></div><div class="card"><div class="ico"><i class="fa-solid fa-users"></i></div><h3>Comunicación constante</h3><p>Mantenemos un diálogo abierto durante todo el proceso, informando sobre el progreso y respondiendo a todas tus preguntas oportunamente.</p></div><div class="card"><div class="ico"><i class="fa-solid fa-award"></i></div><h3>Calidad garantizada</h3><p>Trabajamos con materiales de primera calidad y proveedores confiables. Cada fase del proyecto es supervisada para asegurar resultados óptimos.</p></div><div class="card"><div class="ico"><i class="fa-solid fa-clock"></i></div><h3>Respeto por los plazos</h3><p>Cumplimos estrictamente con los tiempos acordados, coordinando eficientemente todas las fases del proyecto para entregar en la fecha prometida.</p></div><div class="card"><div class="ico"><i class="fa-solid fa-wand-magic-sparkles"></i></div><h3>Atención al detalle</h3><p>Nos enfocamos en los pequeños detalles que marcan la diferencia, creando espacios únicos que superan las expectativas de nuestros clientes.</p></div></div>
+    <div class="cards" data-stagger>
+      <div class="card" data-reveal="diag-right-down">
+        <div class="ico"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Enfoque ecológico</h3>
+        <p>Utilizamos técnicas sostenibles y productos respetuosos con el medio ambiente. Priorizamos especies autóctonas y sistemas de riego eficientes.</p>
+      </div>
+      <div class="card" data-reveal="diag-right-down">
+        <div class="ico"><i class="fa-solid fa-clipboard-check"></i></div>
+        <h3>Planificación detallada</h3>
+        <p>Cada proyecto comienza con un análisis exhaustivo y un plan de trabajo claro, asegurando que cada detalle sea considerado desde el inicio.</p>
+      </div>
+      <div class="card" data-reveal="diag-right-down">
+        <div class="ico"><i class="fa-solid fa-users"></i></div>
+        <h3>Comunicación constante</h3>
+        <p>Mantenemos un diálogo abierto durante todo el proceso, informando sobre el progreso y respondiendo a todas tus preguntas oportunamente.</p>
+      </div>
+      <div class="card" data-reveal="diag-right-down">
+        <div class="ico"><i class="fa-solid fa-award"></i></div>
+        <h3>Calidad garantizada</h3>
+        <p>Trabajamos con materiales de primera calidad y proveedores confiables. Cada fase del proyecto es supervisada para asegurar resultados óptimos.</p>
+      </div>
+      <div class="card" data-reveal="diag-right-down">
+        <div class="ico"><i class="fa-solid fa-clock"></i></div>
+        <h3>Respeto por los plazos</h3>
+        <p>Cumplimos estrictamente con los tiempos acordados, coordinando eficientemente todas las fases del proyecto para entregar en la fecha prometida.</p>
+      </div>
+      <div class="card" data-reveal="diag-right-down">
+        <div class="ico"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h3>Atención al detalle</h3>
+        <p>Nos enfocamos en los pequeños detalles que marcan la diferencia, creando espacios únicos que superan las expectativas de nuestros clientes.</p>
+      </div>
+    </div>
   </div>
 </section>
 

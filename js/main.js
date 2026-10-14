@@ -11,25 +11,51 @@
   /* Año del copyright */
   $$("[data-year]").forEach((e) => (e.textContent = new Date().getFullYear()));
 
-  /* ---------- Pantalla de carga (Preloader) ---------- */
+  /* ---------- Pantalla de carga (Preloader con Bonsái y anillo de carga) ---------- */
   const preloader = $("#preloader");
   if (preloader) {
+    const ringFill = $(".ring-fill", preloader);
+    const pctEl = $("#preloader-pct", preloader);
+    const statusEl = $(".preloader-status", preloader);
     let closed = false;
-    const hidePreloader = () => {
+
+    const finish = () => {
       if (closed) return;
       closed = true;
+      if (pctEl) pctEl.textContent = "100";
+      if (ringFill) ringFill.style.setProperty("--p", "1");
+      if (statusEl) statusEl.textContent = "¡Bienvenido!";
+      preloader.classList.add("charged");
       setTimeout(() => {
         preloader.classList.add("loaded");
         setTimeout(() => {
           if (preloader.parentNode) preloader.remove();
         }, 850);
-      }, 700);
+      }, 380);
     };
-    if (document.readyState === "complete") {
-      hidePreloader();
+
+    if (reduce) {
+      finish();
     } else {
-      window.addEventListener("load", hidePreloader);
-      setTimeout(hidePreloader, 2800);
+      const dur = 1650;
+      const t0 = performance.now();
+      const step = (t) => {
+        if (closed) return;
+        const elapsed = t - t0;
+        const k = clamp(elapsed / dur);
+        const eased = 1 - Math.pow(1 - k, 3);
+        if (ringFill) ringFill.style.setProperty("--p", eased.toFixed(4));
+        if (pctEl) pctEl.textContent = Math.round(eased * 100);
+
+        if (k < 1) {
+          requestAnimationFrame(step);
+        } else {
+          finish();
+        }
+      };
+      requestAnimationFrame(step);
+
+      preloader.addEventListener("click", finish);
     }
   }
 
