@@ -518,6 +518,235 @@ button { font-family: inherit; }
 .tile h3 { font-size: clamp(1.35rem, 2.1vw, 1.75rem); letter-spacing: -0.025em; font-weight: 600; margin: 26px 0 8px; color: #fff; }
 .tile p { color: #a1a1a6; font-size: 1.0625rem; max-width: 30em; }
 
+/* ---------- Poda en Altura: Destacados y Estilos Especiales ---------- */
+.hero-pill-poda {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(90, 114, 74, 0.18), rgba(168, 213, 186, 0.28));
+  color: #26371d;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(90, 114, 74, 0.28);
+  box-shadow: 0 2px 10px rgba(90, 114, 74, 0.1);
+}
+.hero-pill-poda i {
+  color: var(--green);
+}
+
+.badge-specialty {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-bottom: 12px;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #5a724a, #26371d);
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(168, 213, 186, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+.badge-specialty i {
+  color: #ffd166;
+}
+
+.tile-poda-featured {
+  background: radial-gradient(120% 120% at 90% 10%, rgba(90, 114, 74, 0.35) 0%, transparent 60%),
+              linear-gradient(165deg, #1d2719 0%, #12190f 100%) !important;
+  border: 1.5px solid rgba(168, 213, 186, 0.45) !important;
+  box-shadow: 0 16px 40px -15px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(168, 213, 186, 0.1) !important;
+}
+.tile-poda-featured .ico {
+  background: rgba(168, 213, 186, 0.22);
+  color: #d4e8a8;
+  box-shadow: 0 0 20px rgba(168, 213, 186, 0.3);
+}
+
+.price-card.featured-poda {
+  background: linear-gradient(165deg, #ffffff 0%, #f1f7ed 100%);
+  border: 2px solid var(--green);
+  box-shadow: 0 20px 45px -18px rgba(90, 114, 74, 0.35);
+  position: relative;
+}
+.price-card.featured-poda .badge-specialty {
+  background: linear-gradient(135deg, var(--green), #26371d);
+  color: #fff;
+  margin-bottom: 14px;
+}
+.price-card.featured-poda .price {
+  background: var(--green);
+  color: #fff;
+}
+
+/* Sección exclusiva de Poda en Altura */
+.section-poda {
+  padding-top: clamp(40px, 6vw, 70px);
+  padding-bottom: clamp(40px, 6vw, 70px);
+}
+.poda-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 38px;
+  background: radial-gradient(100% 120% at 0% 0%, #2f4323 0%, #162211 60%, #0d140a 100%);
+  border: 1px solid rgba(168, 213, 186, 0.25);
+  box-shadow: 0 40px 90px -25px rgba(0, 0, 0, 0.65);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(32px, 5vw, 64px);
+  padding: clamp(36px, 6vw, 72px);
+  align-items: center;
+  color: #fff;
+}
+.poda-banner::before {
+  content: "";
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 213, 186, 0.18) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.poda-banner-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.eyebrow-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-3);
+}
+.eyebrow-accent i {
+  font-size: 0.95rem;
+  color: #ffd166;
+}
+.grad-gold {
+  background: linear-gradient(135deg, #d4e8a8 0%, #a8d5ba 45%, #ffd166 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.poda-lead {
+  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+}
+.poda-highlights {
+  display: grid;
+  gap: 14px;
+  margin: 10px 0 16px;
+}
+.poda-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(168, 213, 186, 0.16);
+  padding: 14px 18px;
+  border-radius: 18px;
+  transition: transform 0.3s var(--ease), background 0.3s, border-color 0.3s;
+}
+.poda-pill:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(168, 213, 186, 0.38);
+  transform: translateX(6px);
+}
+.poda-pill i {
+  font-size: 1.35rem;
+  color: var(--green-3);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.poda-pill strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+.poda-pill small {
+  display: block;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7);
+}
+.poda-banner-content .btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.poda-banner-media {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.poda-media-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.poda-media-card.main {
+  height: clamp(230px, 28vw, 320px);
+}
+.poda-media-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+.poda-media-card:hover img {
+  transform: scale(1.05);
+}
+.poda-media-card .media-tag {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 2;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: rgba(16, 26, 14, 0.78);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(168, 213, 186, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.poda-media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.poda-media-card.sm {
+  height: clamp(120px, 14vw, 160px);
+}
+
 /* ---------- Cajas de características ---------- */
 .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 4vw, 56px); margin-top: clamp(40px, 6vw, 72px); }
 .feature .ico { font-size: 1.7rem; color: var(--green); margin-bottom: 18px; }
@@ -758,6 +987,7 @@ img.img-missing { display: none !important; }
   .about-photo-wrap { max-width: 520px; margin: 0 auto; }
   .about-photo { max-width: 520px; aspect-ratio: 5 / 4; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .poda-banner { grid-template-columns: 1fr; gap: 40px; }
 }
 
 @media (max-width: 640px) {
@@ -773,6 +1003,10 @@ img.img-missing { display: none !important; }
   .hero-card { clip-path: inset(calc(86vh * (1 - var(--e))) calc(6vw * (1 - var(--e))) calc(-30vh * (1 - var(--e))) calc(6vw * (1 - var(--e))) round calc(36px * (1 - var(--e)))); }
   .whatsapp { right: 16px; bottom: 16px; width: 52px; height: 52px; }
   .lb-prev { left: 10px; } .lb-next { right: 10px; }
+  .poda-media-grid { grid-template-columns: 1fr; }
+  .poda-banner { padding: 30px 20px; border-radius: 28px; }
+  .poda-banner-content .btns { flex-direction: column; width: 100%; }
+  .poda-banner-content .btns .btn { width: 100%; justify-content: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
